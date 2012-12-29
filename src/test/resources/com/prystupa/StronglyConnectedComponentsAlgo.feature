@@ -5,6 +5,7 @@ Feature: Computing strongly connected components of a graph using Tarjan's algor
       | Start | End |
       | 1     | 2   |
       | 2     | 3   |
+    When I compute strongly connected components of this graph using Tarjan's algorithm
     Then there is a connected component of the graph:
       | Node |
       | 3    |
@@ -19,6 +20,7 @@ Feature: Computing strongly connected components of a graph using Tarjan's algor
   Scenario: Simple set of disconnected nodes
     Given the following edges of a graph with "3" vertices:
       | Start | End |
+    When I compute strongly connected components of this graph using Tarjan's algorithm
     Then there is a connected component of the graph:
       | Node |
       | 1    |
@@ -35,6 +37,7 @@ Feature: Computing strongly connected components of a graph using Tarjan's algor
       | Start | End |
       | 1     | 2   |
       | 2     | 1   |
+    When I compute strongly connected components of this graph using Tarjan's algorithm
     Then there is a connected component of the graph:
       | Node |
       | 1    |
@@ -47,6 +50,7 @@ Feature: Computing strongly connected components of a graph using Tarjan's algor
       | 1     | 2   |
       | 2     | 3   |
       | 3     | 1   |
+    When I compute strongly connected components of this graph using Tarjan's algorithm
     Then there is a connected component of the graph:
       | Node |
       | 1    |
@@ -63,6 +67,7 @@ Feature: Computing strongly connected components of a graph using Tarjan's algor
       | 3     | 4   |
       | 4     | 5   |
       | 5     | 4   |
+    When I compute strongly connected components of this graph using Tarjan's algorithm
     Then there is a connected component of the graph:
       | Node |
       | 4    |
@@ -82,6 +87,7 @@ Feature: Computing strongly connected components of a graph using Tarjan's algor
       | 3     | 4   |
       | 4     | 5   |
       | 5     | 1   |
+    When I compute strongly connected components of this graph using Tarjan's algorithm
     Then there is a connected component of the graph:
       | Node |
       | 1    |
