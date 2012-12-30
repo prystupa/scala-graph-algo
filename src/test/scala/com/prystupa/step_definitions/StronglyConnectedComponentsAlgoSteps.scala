@@ -41,8 +41,6 @@ class StronglyConnectedComponentsAlgoSteps(val world: World) extends World.Suppo
     results should equal(Nil)
   }
 
-  case class EdgeRow(start: Int, end: Int)
-
   case class NodeRow(node: Int)
 
 }
