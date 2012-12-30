@@ -1,6 +1,7 @@
 package com.prystupa.algo.tarjan
 
 import collection.immutable.Stack
+import com.prystupa.algo.util.GraphUtils
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,7 +12,10 @@ import collection.immutable.Stack
 
 class StronglyConnectedComponentsAlgo {
 
-  def compute(adjacencyList: Vector[Set[Int]]): Vector[Set[Int]] = {
+  type GraphAdjList = Vector[Set[Int]]
+  type SubGraphAdjList = Map[Int, Set[Int]]
+
+  def compute(adjacencyList: GraphAdjList): Vector[SubGraphAdjList] = {
 
     def strongConnect(v: Int, state: State): State = {
 
@@ -32,7 +36,8 @@ class StronglyConnectedComponentsAlgo {
       stacked = Vector.fill(n)(false),
       results = Vector.empty)
 
-    (0 until n).foldLeft(initialState)((state, v) => strongConnect(v, state)).results
+    (0 until n).foldLeft(initialState)((state, v) => strongConnect(v, state)).results.map(
+      nodes => GraphUtils.subGraph(adjacencyList, nodes))
   }
 
   private case class Visited(index: Int, lowLink: Int)

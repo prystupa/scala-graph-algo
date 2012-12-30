@@ -15,7 +15,7 @@ import com.prystupa.algo.tarjan.StronglyConnectedComponentsAlgo
 class StronglyConnectedComponentsAlgoSteps(val world: World) extends World.Support with ShouldMatchers {
 
   val algo: StronglyConnectedComponentsAlgo = new StronglyConnectedComponentsAlgo
-  var results: List[Set[Int]] = _
+  var results: List[Map[Int, Set[Int]]] = _
 
 
   @When("^I compute strongly connected components of this graph using Tarjan's algorithm$")
@@ -25,11 +25,14 @@ class StronglyConnectedComponentsAlgoSteps(val world: World) extends World.Suppo
   }
 
   @Then("^there is a connected component of the graph:$")
-  def there_is_a_connected_component_of_the_graph(nodes: java.util.List[NodeRow]) {
+  def there_is_a_connected_component_of_the_graph(nodes: java.util.List[GraphRow]) {
+
+    val expected = nodes.map(r =>
+      (r.node - 1, r.successors.split(',').filterNot(_ == "").map(_.toInt - 1).toSet)).toMap
 
     results = results match {
       case head :: tail => {
-        head.map(_ + 1) should equal(nodes.map(_.node).toSet)
+        head should equal(expected)
         tail
       }
       case Nil => throw new IllegalStateException("Too few results")
@@ -41,6 +44,6 @@ class StronglyConnectedComponentsAlgoSteps(val world: World) extends World.Suppo
     results should equal(Nil)
   }
 
-  case class NodeRow(node: Int)
+  case class GraphRow(node: Int, successors: String)
 
 }
